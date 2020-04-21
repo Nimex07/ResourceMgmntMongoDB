@@ -33,31 +33,31 @@ public class ResourceDetailsController {
 	@Autowired
 	private iResourceDetailsService resourceDetailsService;
 
-	/*
-	 * @PostMapping("resourcedetails") public ResponseEntity<Response>
-	 * addResource(@RequestParam("file") MultipartFile file,
-	 * 
-	 * @RequestParam("resource") String resource) throws JsonMappingException,
-	 * JsonProcessingException, IOException {
-	 * System.out.println("Original Image Byte Size - " + file.getBytes().length);
-	 * ResourceDetails resourceDet = new ObjectMapper().readValue(resource,
-	 * ResourceDetails.class); //
-	 * resourceDet.setPhoto(compressBytes(file.getBytes()));
-	 * resourceDet.setPicturePath(file.getOriginalFilename()); ResourceDetails
-	 * resourceDtls = resourceDetailsService.addResource(resourceDet);
-	 * 
-	 * if (resourceDtls != null) { return new ResponseEntity<Response>(new
-	 * Response("resource details saved success"), HttpStatus.OK); } else { return
-	 * new ResponseEntity<Response>(new
-	 * Response("resource details saved not success"), HttpStatus.BAD_REQUEST); } }
-	 */
-
-	// add resourceDetails
+	// add resourceDetails without picture
 	@PostMapping("resourcedetails")
 	public ResponseEntity<ResourceDetails> addResource(@RequestBody ResourceDetails resource) {
 		return new ResponseEntity<ResourceDetails>(resourceDetailsService.addResource(resource), HttpStatus.OK);
 	}
+	
+/*  // add resourceDetails with picture
+	@PostMapping("resourcedetails")
+	public ResponseEntity<Response> addResource(@RequestParam("file") MultipartFile file,
+			@RequestParam("resource") String resource)
+			throws JsonMappingException, JsonProcessingException, IOException {
 
+		ResourceDetails resourceDet = new ObjectMapper().readValue(resource, ResourceDetails.class);
+		// setting filename from File
+		resourceDet.setPicturePath(file.getOriginalFilename());
+		ResourceDetails resourceDtls = resourceDetailsService.addResource(resourceDet);
+
+		if (resourceDtls != null) {
+			return new ResponseEntity<Response>(new Response("resource details saved success"), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Response>(new Response("resource details saved not success"),
+					HttpStatus.BAD_REQUEST);
+		}
+	}
+*/
 	// edit resourceDetails
 	@PutMapping("resourcedetails")
 	public ResponseEntity<ResourceDetails> updateResource(@RequestBody ResourceDetails resource) {

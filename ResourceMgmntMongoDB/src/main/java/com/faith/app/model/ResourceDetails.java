@@ -1,11 +1,16 @@
 package com.faith.app.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "resource_details")
 public class ResourceDetails {
+	
+	@Transient
+    public static final String SEQUENCE_NAME = "resDet_sequence";
+	
 	// instance variables
 	@Id
 	private Long resourceId;

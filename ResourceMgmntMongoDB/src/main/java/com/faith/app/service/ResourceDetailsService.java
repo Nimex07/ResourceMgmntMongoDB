@@ -14,10 +14,15 @@ public class ResourceDetailsService implements iResourceDetailsService {
 
 	@Autowired
 	private iResourceDetailsRepo resourceDetailsRepo;
+	
+	@Autowired
+	private ISequenceGenerator sequenceGenerator;
 
 	// add resource
 	@Override
 	public ResourceDetails addResource(ResourceDetails resourceDetails) {
+		// setting id
+		resourceDetails.setResourceId(sequenceGenerator.generateSequence(ResourceDetails.SEQUENCE_NAME));
 		return resourceDetailsRepo.save(resourceDetails);
 	}
 

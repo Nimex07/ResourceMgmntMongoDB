@@ -15,15 +15,21 @@ public class ResourceService implements iResourceService {
 	@Autowired
 	private iResourceRepository resourceRepo;
 
+	@Autowired
+	private ISequenceGenerator sequenceGenerator;
+
 	// method to add the resource into table
 	@Override
 	public Resource addResource(Resource resource) {
+		// setting id
+		resource.setResourceTypeId(sequenceGenerator.generateSequence(Resource.SEQUENCE_NAME));
 		return resourceRepo.save(resource);
 	}
 
 	// method to update the resource type
 	@Override
 	public Resource updateResource(Resource resource) {
+
 		return resourceRepo.save(resource);
 	}
 

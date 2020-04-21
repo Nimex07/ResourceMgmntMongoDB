@@ -17,10 +17,15 @@ public class BookingDetailsService implements iBookingDetailsService {
 	@Autowired
 	private iBookingDetailsRepo bookingRepo;
 
+	@Autowired
+	private ISequenceGenerator sequenceGenerator;
+
 	// inserting data
 	@Transactional
 	@Override
 	public BookingDetails addBooking(BookingDetails bookingDetails) {
+		// setting id
+		bookingDetails.setBookingId(sequenceGenerator.generateSequence(BookingDetails.SEQUENCE_NAME));
 		return bookingRepo.save(bookingDetails);
 	}
 

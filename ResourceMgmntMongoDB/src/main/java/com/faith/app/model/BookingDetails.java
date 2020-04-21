@@ -3,13 +3,18 @@ package com.faith.app.model;
 import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 //create table name
-@Document
+@Document(collection = "booking_details")
 public class BookingDetails {
+
+	@Transient
+	public static final String SEQUENCE_NAME = "book_sequence";
+
 	// instance variables
 
 	@Id // setting primary key
