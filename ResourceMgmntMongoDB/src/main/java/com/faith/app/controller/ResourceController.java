@@ -33,7 +33,7 @@ public class ResourceController {
 	}
 
 	// view all resources
-	@GetMapping("resource")
+	@GetMapping("resource-details")
 	public ResponseEntity<List<Resource>> listAllResources() {
 		return new ResponseEntity<List<Resource>>(resourceService.listAllResource(), HttpStatus.OK);
 	}
